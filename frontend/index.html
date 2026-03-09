@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Meu Primeiro Registro Web3</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/ethers@6.13.2/dist/ethers.umd.min.js"></script>
+    <script src="config.js"></script>
+  </head>
+  <body>
+    <main class="container">
+      <section class="hero">
+        <div class="card">
+          <span class="badge">Mini Projeto Web3</span>
+          <h1>Meu Primeiro Registro na Blockchain</h1>
+          <p class="lead">
+            Aplicação mínima para provar que um site consegue conversar com um
+            contrato inteligente na blockchain, conectando a MetaMask e
+            registrando um status.
+          </p>
+
+          <div class="actions">
+            <button class="primary" id="connectBtn">Conectar carteira</button>
+            <button class="secondary" id="refreshBtn">Atualizar leitura</button>
+            <div class="connection-pill disconnected" id="connectionPill">
+              <span class="connection-dot"></span>
+              <span id="connectionText">Carteira desconectada</span>
+            </div>
+          </div>
+
+          <div id="feedback" class="feedback info">
+            Passo 1: faça o deploy do contrato no Remix. Passo 2: cole o
+            endereço em <strong>config.js</strong>.
+          </div>
+
+          <div class="grid">
+            <div class="card">
+              <div class="label">Status da conexão</div>
+              <div class="value" id="walletConnectionStatus">
+                Carteira desconectada
+              </div>
+            </div>
+            <div class="card">
+              <div class="label">Carteira</div>
+              <div class="value" id="walletAddress">-</div>
+            </div>
+            <div class="card">
+              <div class="label">Rede</div>
+              <div class="value" id="network">-</div>
+            </div>
+            <div class="card" style="grid-column: 1 / -1">
+              <div class="label">Contrato</div>
+              <div class="value" id="contractAddress">
+                0x794d96f24069C57C80Ad1ce35CC5205B12e2DfCE
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="stack">
+            <div class="stack-item">
+              <strong>Fluxo Web3</strong>
+              Usuário → MetaMask → Ethers.js → Provider RPC → Blockchain.
+            </div>
+            <div class="stack-item">
+              <strong>Ação demonstrada</strong>
+              Registrar um dado na blockchain com a função
+              <code>setStatus</code>.
+            </div>
+            <div class="stack-item">
+              <strong>Exemplo de teste</strong>
+              Digite: <code>Produto enviado</code> e confirme a transação na
+              carteira.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="grid">
+        <div class="card">
+          <div class="label">Status atual on-chain</div>
+          <div class="value" id="onChainStatus">-</div>
+
+          <div style="height: 18px"></div>
+
+          <div class="label">Total de atualizações</div>
+          <div class="value" id="updateCount">0</div>
+
+          <div style="height: 18px"></div>
+
+          <div class="label">Último atualizador</div>
+          <div class="value" id="lastUpdater">-</div>
+
+          <div style="height: 18px"></div>
+
+          <div class="label">Última atualização</div>
+          <div class="value" id="lastUpdatedAt">-</div>
+        </div>
+
+        <div class="card">
+          <div class="input-group">
+            <label class="label" for="statusInput"
+              >Novo status para gravar na blockchain</label
+            >
+            <input
+              id="statusInput"
+              type="text"
+              maxlength="120"
+              placeholder="Ex.: Produto enviado"
+            />
+            <button class="primary" id="saveBtn">
+              Enviar para a blockchain
+            </button>
+          </div>
+
+          <div id="txBox" class="tx-box" hidden>
+            <div class="label">
+              Hash da transação (clique para abrir no explorer)
+            </div>
+            <div class="value" id="txHash">-</div>
+            <div style="height: 8px"></div>
+            <a
+              id="explorerLink"
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Abrir no explorer</a
+            >
+          </div>
+
+          <p class="footer-note">
+            Dica: se você usar BSC Mainnet ou BSC Testnet, o hash vai abrir
+            direto no BscScan.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
